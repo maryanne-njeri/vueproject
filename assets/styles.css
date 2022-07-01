@@ -10,3 +10,24 @@ html,
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+.male {
+    background: deepskyblue;
+    border-color: deepskyblue;
+}
+
+.male:hover {
+    background: rgb(2, 115, 153);
+    color: #fff;
+}
+
+.female {
+    background: rgb(249, 170, 184);
+    border-color: rgb(249, 170, 184);
+    color: #333;
+}
+
+.female:hover {
+    background: rgb(247, 120, 142);
+    color: #fff;
+}

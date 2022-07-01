@@ -11,8 +11,12 @@
 <body>
     <div id="app">
     <div class="flex flex-col items-center justify-center min-h-screen w-fulll">
+        <div class="text-center">
+            <h1 class="pb-4 w-96 font-bold text-xl text-gray-700 uppercase">The thumbnail's border color and the Button's color will Change based on Gender</h1>
+        </div>
             <div>
-                <img :src="picture" :alt="firstName" class="w-16 rounded-full" :class="">
+                <!-- <img :src="picture" :alt="firstName" class="w-24 rounded-full border-4" :class="gender.female ? 'border-pink-400' : 'border-blue-700'"> -->
+                <img :src="picture" :alt="firstName" class="w-32 rounded-full border-4" :class="gender">
             </div>
             <div class="py-4">
                 <h3 class="w-full">{{ firstName }} {{ lastName }}</h3>
@@ -21,7 +25,18 @@
                 <h3 class="w-full">Email: {{ email }}</h3>
             </div>
             <div class="">
-                <button class="px-6 py-3 bg-black text-white font-bold hover:bg-gray-700 transition duration-150 ease-in">Get Random User</button>
+                <!-- <button
+                    @click="getUser"
+                    class="px-6 py-3 text-white font-bold hover:bg-pink-600 transition duration-150 ease-in"
+                    :class="gender.female ? 'bg-pink-400' : 'bg-blue-700'">
+                    Get Random User
+                </button> -->
+                <button
+                    @click="getUser"
+                    class="px-6 py-3 font-bold transition duration-150 ease-in"
+                    :class="gender">
+                    Get Random User
+                </button>
             </div>
         </div>
     </div>
@@ -36,15 +51,26 @@
         return {
             firstName: 'Rosemary',
             lastName: 'Njeri',
-            email: 'maryanjeryrose@gmail.com',
-            gender: 'male',
-            picture: './assets/img/author.png',
+            email: 'me.woman@gmail.com',
+            gender: 'female',
+            picture: 'https://randomuser.me/api/portraits/women/10.jpg'
         }
     },
 
     methods: {
-            fullName () {
-                return this.firstName + ' ' + this.lastName;
+        // Fetching Random User with randomuser api
+            async getUser () {
+                const url = 'https://randomuser.me/api'
+                const response = await fetch(url)
+                const { results } = await response.json()
+
+                // console.log(results);
+
+                this.firstName = results[0].name.first
+                this.lastName = results[0].name.last
+                this.email = results[0].email
+                this.gender = results[0].gender
+                this.picture = results[0].picture.large
             }
         }
     }).mount('#app')
