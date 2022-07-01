@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>Vue Project</title>
+</head>
+<body>
+    <div id="app">
+    <div class="flex flex-col items-center justify-center min-h-screen w-fulll">
+            <div>
+                <img :src="picture" :alt="firstName" class="w-16 rounded-full" :class="">
+            </div>
+            <div class="py-4">
+                <h3 class="w-full">{{ firstName }} {{ lastName }}</h3>
+            </div>
+            <div class="pb-4">
+                <h3 class="w-full">Email: {{ email }}</h3>
+            </div>
+            <div class="">
+                <button class="px-6 py-3 bg-black text-white font-bold hover:bg-gray-700 transition duration-150 ease-in">Get Random User</button>
+            </div>
+        </div>
+    </div>
+    
+<script src="https://unpkg.com/vue@3"></script>
+<script src="assets/script.js"></script>
+<script>
+    const { createApp } = Vue
+
+    createApp({
+    data() {
+        return {
+            firstName: 'Rosemary',
+            lastName: 'Njeri',
+            email: 'maryanjeryrose@gmail.com',
+            gender: 'male',
+            picture: './assets/img/author.png',
+        }
+    },
+
+    methods: {
+            fullName () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
